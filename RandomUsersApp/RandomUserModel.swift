@@ -4,9 +4,6 @@
 //
 //  Created by Raul Linio Alonso on 16/2/24.
 //
-
-import Foundation
-
 import Foundation
 
 // MARK: - Users
@@ -24,7 +21,6 @@ struct Info: Codable {
 
 // MARK: - Result
 struct User: Codable {
-    
     let gender: String
     let name: Name
     let location: Location

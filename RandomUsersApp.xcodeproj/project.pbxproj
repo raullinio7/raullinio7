@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		124C2D6B2B7FD14900F36C8C /* RandomUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */; };
+		124C2D6D2B7FD17300F36C8C /* RandomUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */; };
+		124C2D6F2B7FD1A000F36C8C /* RandomUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */; };
 		12B687E02B7FCBB20033D200 /* RandomUsersAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B687DF2B7FCBB20033D200 /* RandomUsersAppApp.swift */; };
-		12B687E22B7FCBB20033D200 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B687E12B7FCBB20033D200 /* ContentView.swift */; };
 		12B687E42B7FCBB30033D200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B687E32B7FCBB30033D200 /* Assets.xcassets */; };
 		12B687E82B7FCBB30033D200 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B687E72B7FCBB30033D200 /* Preview Assets.xcassets */; };
 		12B687F22B7FCBB30033D200 /* RandomUsersAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B687F12B7FCBB30033D200 /* RandomUsersAppTests.swift */; };
@@ -34,9 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserModel.swift; sourceTree = "<group>"; };
+		124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserPresenter.swift; sourceTree = "<group>"; };
+		124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserView.swift; sourceTree = "<group>"; };
+		124C2D702B7FD4CE00F36C8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12B687DC2B7FCBB20033D200 /* RandomUsersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUsersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B687DF2B7FCBB20033D200 /* RandomUsersAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUsersAppApp.swift; sourceTree = "<group>"; };
-		12B687E12B7FCBB20033D200 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		12B687E32B7FCBB30033D200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12B687E52B7FCBB30033D200 /* RandomUsersApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RandomUsersApp.entitlements; sourceTree = "<group>"; };
 		12B687E72B7FCBB30033D200 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -95,8 +100,11 @@
 		12B687DE2B7FCBB20033D200 /* RandomUsersApp */ = {
 			isa = PBXGroup;
 			children = (
+				124C2D702B7FD4CE00F36C8C /* Info.plist */,
 				12B687DF2B7FCBB20033D200 /* RandomUsersAppApp.swift */,
-				12B687E12B7FCBB20033D200 /* ContentView.swift */,
+				124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */,
+				124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */,
+				124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */,
 				12B687E32B7FCBB30033D200 /* Assets.xcassets */,
 				12B687E52B7FCBB30033D200 /* RandomUsersApp.entitlements */,
 				12B687E62B7FCBB30033D200 /* Preview Content */,
@@ -259,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12B687E22B7FCBB20033D200 /* ContentView.swift in Sources */,
+				124C2D6D2B7FD17300F36C8C /* RandomUserPresenter.swift in Sources */,
+				124C2D6F2B7FD1A000F36C8C /* RandomUserView.swift in Sources */,
+				124C2D6B2B7FD14900F36C8C /* RandomUserModel.swift in Sources */,
 				12B687E02B7FCBB20033D200 /* RandomUsersAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +427,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RandomUsersApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RandomUsersApp/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -453,6 +464,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RandomUsersApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RandomUsersApp/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

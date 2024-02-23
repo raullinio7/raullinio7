@@ -13,9 +13,9 @@ class RandomUserPresenter: ObservableObject {
     func fetchRandomUser() {
         apiService.getRandomUser { result in
             switch result {
-            case .success(let user):
+            case .success(let users):
                 DispatchQueue.main.async {
-                    self.users = [user]
+                    self.users = users.results
                 }
             case .failure(let error):
                 print("Error fetching random user: \(error)")
@@ -25,8 +25,8 @@ class RandomUserPresenter: ObservableObject {
 }
 
 class RandomUserService {
-    func getRandomUser(completion: @escaping (Result<User, Error>) -> Void) {
-        guard let url = URL(string: "https://randomuser.me/api?results=3") else {
+    func getRandomUser(completion: @escaping (Result<Users, Error>) -> Void) {
+        guard let url = URL(string: "https://randomuser.me/api?results=20") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
@@ -43,7 +43,7 @@ class RandomUserService {
             print(jsonData)
             do {
                 let randomUser = try JSONDecoder().decode(Users.self, from: data)
-                completion(.success(randomUser.results[1]))
+                completion(.success(randomUser))
             } catch {
                 completion(.failure(error))
             }

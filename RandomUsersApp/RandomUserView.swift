@@ -15,8 +15,10 @@ struct RandomUserView: View {
                 VStack {
                     if let users = presenter.users {
                         ForEach(users, id: \.id.value) { user in
-                            CardView(imageURLString: user.picture.large, name: user.name.first + " " + user.name.last)
-                                .padding()
+                            NavigationLink(destination: UserDetailsView(user: user, email: user.email, password: user.login.password, isPasswordHidden: true)) {
+                                CardView(imageURLString: user.picture.large, name: user.name.first + " " + user.name.last)
+                                    .padding()
+                            }
                         }
                     } else {
                         Text("Cargando...")
@@ -24,7 +26,8 @@ struct RandomUserView: View {
                 }
                 .navigationBarTitle("Usuarios") // Configurar título en la barra de navegación
                 .navigationBarTitleDisplayMode(.inline) // Mostrar el título en línea
-            } .background(Color.pink.edgesIgnoringSafeArea(.all))
+            }
+            .background(Color.pink.edgesIgnoringSafeArea(.all))
             .onAppear {
                 presenter.fetchRandomUser()
             }
@@ -66,6 +69,11 @@ struct CardView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .foregroundColor(.black)
+                .font(.headline)
         }
         .padding()
         .background(Color.white)

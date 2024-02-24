@@ -40,7 +40,7 @@ class RandomUserService {
                 return
             }
             let jsonData = data.prettyPrintedJSONString
-            print(jsonData)
+            print(jsonData as Any)
             do {
                 let randomUser = try JSONDecoder().decode(Users.self, from: data)
                 completion(.success(randomUser))

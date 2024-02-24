@@ -10,6 +10,7 @@
 		124C2D6B2B7FD14900F36C8C /* RandomUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */; };
 		124C2D6D2B7FD17300F36C8C /* RandomUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */; };
 		124C2D6F2B7FD1A000F36C8C /* RandomUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */; };
+		1281F8E42B8A09B500DD3B11 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1281F8E32B8A09B500DD3B11 /* UserDetailsView.swift */; };
 		12B687E02B7FCBB20033D200 /* RandomUsersAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B687DF2B7FCBB20033D200 /* RandomUsersAppApp.swift */; };
 		12B687E42B7FCBB30033D200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B687E32B7FCBB30033D200 /* Assets.xcassets */; };
 		12B687E82B7FCBB30033D200 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B687E72B7FCBB30033D200 /* Preview Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserPresenter.swift; sourceTree = "<group>"; };
 		124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserView.swift; sourceTree = "<group>"; };
 		124C2D702B7FD4CE00F36C8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1281F8E32B8A09B500DD3B11 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		12B687DC2B7FCBB20033D200 /* RandomUsersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUsersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B687DF2B7FCBB20033D200 /* RandomUsersAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUsersAppApp.swift; sourceTree = "<group>"; };
 		12B687E32B7FCBB30033D200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				12B687E32B7FCBB30033D200 /* Assets.xcassets */,
 				12B687E52B7FCBB30033D200 /* RandomUsersApp.entitlements */,
 				12B687E62B7FCBB30033D200 /* Preview Content */,
+				1281F8E32B8A09B500DD3B11 /* UserDetailsView.swift */,
 			);
 			path = RandomUsersApp;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1281F8E42B8A09B500DD3B11 /* UserDetailsView.swift in Sources */,
 				124C2D6D2B7FD17300F36C8C /* RandomUserPresenter.swift in Sources */,
 				124C2D6F2B7FD1A000F36C8C /* RandomUserView.swift in Sources */,
 				124C2D6B2B7FD14900F36C8C /* RandomUserModel.swift in Sources */,

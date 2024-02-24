@@ -8,7 +8,7 @@ import SwiftUI
 
 struct RandomUserView: View {
     @StateObject private var presenter = RandomUserPresenter()
-    
+    @State private var isFirstAppearance = true
     var body: some View {
         NavigationView {
             ScrollView() {
@@ -16,7 +16,7 @@ struct RandomUserView: View {
                     if let users = presenter.users {
                         ForEach(users, id: \.id.value) { user in
                             NavigationLink(destination: UserDetailsView(user: user, email: user.email, password: user.login.password, isPasswordHidden: true)) {
-                                CardView(imageURLString: user.picture.large, name: user.name.first + " " + user.name.last)
+                                CardView(imageURLString: user.picture.large, name: "\(user.name.first) \(user.name.last)")
                                     .padding()
                             }
                         }
@@ -28,11 +28,14 @@ struct RandomUserView: View {
                 .navigationBarTitleDisplayMode(.inline) // Mostrar el título en línea
             }
             .background(Color.pink.edgesIgnoringSafeArea(.all))
-            .onAppear {
-                presenter.fetchRandomUser()
-            }
             .refreshable {
                 presenter.fetchRandomUser()
+            }
+            .onAppear {
+                if isFirstAppearance {
+                    presenter.fetchRandomUser()
+                    isFirstAppearance = false
+                }
             }
         }
     }

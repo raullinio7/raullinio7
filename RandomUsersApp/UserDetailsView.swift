@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct UserDetailsView: View {
     let user: User
     @State private var isPasswordHidden: Bool
@@ -39,24 +38,20 @@ struct UserDetailsView: View {
                             .cornerRadius(8)
                             .shadow(radius: 5)
                             .onAppear {
-                                loadImage(from: user.picture.medium)
+                                loadImage(from: user.picture.large)
                             }
                     }
-                    // Campo nombre
-                    Text(user.name.first)
+                    Text("\(user.name.first) \(user.name.last)")
                         .font(.title)
-                        .foregroundColor(.white)
-//
-//                    // Campo dirección
-//                    Text(name + ", " + user.location.city)
-//                        .font(.title)
-//                        .foregroundColor(.white)
-//
-                    // Campo editable para el email
+                        .foregroundColor(.black)
+
+                    Text(user.location.city + ", " + user.location.country)
+                        .font(.title3)
+                        .foregroundColor(.black)
+
                     TextField("Email", text: $email)
                         .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                         .padding(.horizontal)
                     
                     // Campo editable para la contraseña con botón de ojo
@@ -75,16 +70,26 @@ struct UserDetailsView: View {
                         .foregroundColor(.black)
                     }
                     .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                     .padding(.horizontal)
-//
-//                    // Espaciador
-//                    Spacer()
+
+                    Button(action: {
+                        UserDefaults.standard.set(email, forKey: "savedEmail")
+                        UserDefaults.standard.set(password, forKey: "savedPassword")
+                    }) {
+                        Text("Guardar")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.black)
+                            .cornerRadius(10)
+                            .shadow(radius: 3)
+                    }
+                    Spacer()
                 }
             }
         }
     }
+    
     func loadImage(from urlString: String) {
         guard let url = URL(string: urlString) else {
             return

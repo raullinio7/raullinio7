@@ -8,16 +8,15 @@
 import SwiftUI
 struct UserDetailsView: View {
     let user: User
-    @State private var isPasswordHidden: Bool
-    @State private var email: String
-    @State private var password: String
+    @State private var isPasswordHidden: Bool = true
+    @State private var modifiedEmail: String // Variable para almacenar el email modificado
+    @State private var modifiedPassword: String // Variable para almacenar la contraseña modificada
     @State private var image: UIImage? = nil
     
-    init(user: User, email: String, password: String, isPasswordHidden: Bool) {
-        self.user = user // Inicializa la propiedad user antes de llamar a super.init()
-        self._email = State(initialValue: email)
-        self._password = State(initialValue: password)
-        self._isPasswordHidden = State(initialValue: isPasswordHidden)
+    init(user: User) {
+        self.user = user
+        self._modifiedEmail = State(initialValue: user.email)
+        self._modifiedPassword = State(initialValue: user.login.password)
     }
 
     var body: some View {
@@ -44,22 +43,21 @@ struct UserDetailsView: View {
                     Text("\(user.name.first) \(user.name.last)")
                         .font(.title)
                         .foregroundColor(.black)
-
+                    
                     Text(user.location.city + ", " + user.location.country)
                         .font(.title3)
                         .foregroundColor(.black)
-
-                    TextField("Email", text: $email)
+                    
+                    TextField("Email", text: $modifiedEmail)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                         .padding(.horizontal)
                     
-                    // Campo editable para la contraseña con botón de ojo
                     HStack {
                         if isPasswordHidden {
-                            SecureField("Contraseña", text: $password)
+                            SecureField("Contraseña", text: $modifiedPassword)
                         } else {
-                            TextField("Contraseña", text: $password)
+                            TextField("Contraseña", text: $modifiedPassword)
                         }
                         Button(action: {
                             isPasswordHidden.toggle()
@@ -72,10 +70,11 @@ struct UserDetailsView: View {
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                     .padding(.horizontal)
-
+                    
                     Button(action: {
-                        UserDefaults.standard.set(email, forKey: "savedEmail")
-                        UserDefaults.standard.set(password, forKey: "savedPassword")
+                        // Guardar los cambios en UserDefaults
+                        UserDefaults.standard.set(modifiedEmail, forKey: "\(user.id.value)_savedEmail")
+                        UserDefaults.standard.set(modifiedPassword, forKey: "\(user.id.value)_savedPassword")
                     }) {
                         Text("Guardar")
                             .foregroundColor(.white)
@@ -84,8 +83,18 @@ struct UserDetailsView: View {
                             .cornerRadius(10)
                             .shadow(radius: 3)
                     }
+                    
                     Spacer()
                 }
+            }
+        }
+        .onAppear {
+            // Cargar los valores de UserDefaults si están disponibles
+            if let savedEmail = UserDefaults.standard.string(forKey: "\(user.id.value)_savedEmail") {
+                self.modifiedEmail = savedEmail
+            }
+            if let savedPassword = UserDefaults.standard.string(forKey: "\(user.id.value)_savedPassword") {
+                self.modifiedPassword = savedPassword
             }
         }
     }

@@ -9,13 +9,14 @@ import SwiftUI
 struct RandomUserView: View {
     @StateObject private var presenter = RandomUserPresenter()
     @State private var isFirstAppearance = true
+    
     var body: some View {
         NavigationView {
-            ScrollView() {
+            ScrollView {
                 VStack {
                     if let users = presenter.users {
                         ForEach(users, id: \.id.value) { user in
-                            NavigationLink(destination: UserDetailsView(user: user, email: user.email, password: user.login.password, isPasswordHidden: true)) {
+                            NavigationLink(destination: UserDetailsView(user: user)) {
                                 CardView(imageURLString: user.picture.large, name: "\(user.name.first) \(user.name.last)")
                                     .padding()
                             }
@@ -24,8 +25,8 @@ struct RandomUserView: View {
                         Text("Cargando...")
                     }
                 }
-                .navigationBarTitle("Usuarios") // Configurar título en la barra de navegación
-                .navigationBarTitleDisplayMode(.inline) // Mostrar el título en línea
+                .navigationBarTitle("Usuarios")
+                .navigationBarTitleDisplayMode(.inline)
             }
             .background(Color.pink.edgesIgnoringSafeArea(.all))
             .refreshable {
@@ -40,6 +41,7 @@ struct RandomUserView: View {
         }
     }
 }
+
 struct CardView: View {
     var imageURLString: String
     var name: String

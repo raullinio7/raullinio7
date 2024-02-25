@@ -7,14 +7,18 @@
 
 import SwiftUI
 struct UserDetailsView: View {
+    
     let user: User
-    @State private var isPasswordHidden: Bool = true
-    @State private var modifiedEmail: String // Variable para almacenar el email modificado
-    @State private var modifiedPassword: String // Variable para almacenar la contraseña modificada
-    @State private var image: UIImage? = nil
+    
+    //Las siguientes variables son @State para que la interfaz de usuario se actualice cuando cambien
+    @State private var isPasswordHidden: Bool = true // Estado para controlar la visibilidad de la contraseña
+    @State private var modifiedEmail: String // Variable de estado para almacenar el email modificado
+    @State private var modifiedPassword: String // Variable de estado para almacenar la contraseña modificada
+    @State private var image: UIImage? = nil // Estado para almacenar la imagen del usuario
     
     init(user: User) {
         self.user = user
+        // Se inicializan con los valores del usuario recibido
         self._modifiedEmail = State(initialValue: user.email)
         self._modifiedPassword = State(initialValue: user.login.password)
     }
@@ -23,6 +27,7 @@ struct UserDetailsView: View {
         ScrollView() {
             VStack {
                 VStack {
+                    // Mostrar la imagen del usuario, si está disponible
                     if let image = image {
                         Image(uiImage: image)
                             .resizable()
@@ -31,28 +36,31 @@ struct UserDetailsView: View {
                             .cornerRadius(8)
                             .shadow(radius: 5)
                     } else {
+                        // Si no hay imagen disponible, se muestra un rectángulo gris
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.gray)
                             .frame(width: 80, height: 80)
                             .cornerRadius(8)
                             .shadow(radius: 5)
                             .onAppear {
+                                // Se llama a la función de cargar imagen
                                 loadImage(from: user.picture.large)
                             }
                     }
                     Text("\(user.name.first) \(user.name.last)")
                         .font(.title)
                         .foregroundColor(.black)
-                    
                     Text(user.location.city + ", " + user.location.country)
                         .font(.title3)
                         .foregroundColor(.black)
                     
+                    // Campo editable para el email del usuario
                     TextField("Email", text: $modifiedEmail)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                         .padding(.horizontal)
                     
+                    // Campo editable para la contraseña del usuario
                     HStack {
                         if isPasswordHidden {
                             SecureField("Contraseña", text: $modifiedPassword)
@@ -60,6 +68,7 @@ struct UserDetailsView: View {
                             TextField("Contraseña", text: $modifiedPassword)
                         }
                         Button(action: {
+                            //.toggle() lo que hace es cambiar el valor de var isPasswordHidden: Bool
                             isPasswordHidden.toggle()
                         }) {
                             Image(systemName: isPasswordHidden ? "eye.slash" : "eye")
@@ -71,10 +80,11 @@ struct UserDetailsView: View {
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                     .padding(.horizontal)
                     
+                    // Botón para guardar los cambios en UserDefaults
                     Button(action: {
-                        // Guardar los cambios en UserDefaults
-                        UserDefaults.standard.set(modifiedEmail, forKey: "\(user.id.value)_savedEmail")
-                        UserDefaults.standard.set(modifiedPassword, forKey: "\(user.id.value)_savedPassword")
+                        //Se almacenan los valores modificados y en la key se pone el id para que sea especifico de cada usuario.
+                        UserDefaults.standard.set(modifiedEmail, forKey: "\(String(describing: user.id.value))_savedEmail")
+                        UserDefaults.standard.set(modifiedPassword, forKey: "\(user.id.value ?? "")_savedPassword")
                     }) {
                         Text("Guardar")
                             .foregroundColor(.white)
@@ -83,22 +93,22 @@ struct UserDetailsView: View {
                             .cornerRadius(10)
                             .shadow(radius: 3)
                     }
-                    
                     Spacer()
                 }
             }
         }
         .onAppear {
-            // Cargar los valores de UserDefaults si están disponibles
-            if let savedEmail = UserDefaults.standard.string(forKey: "\(user.id.value)_savedEmail") {
+            //Se cargan los valores guardados para ser mostrados en caso de salir y entrar de la vista detalle.
+            if let savedEmail = UserDefaults.standard.string(forKey: "\(String(describing: user.id.value))_savedEmail") {
                 self.modifiedEmail = savedEmail
             }
-            if let savedPassword = UserDefaults.standard.string(forKey: "\(user.id.value)_savedPassword") {
+            if let savedPassword = UserDefaults.standard.string(forKey: "\(String(describing: user.id.value))_savedPassword") {
                 self.modifiedPassword = savedPassword
             }
         }
     }
     
+    //Función para cargar la imagen del usuario desde una URL
     func loadImage(from urlString: String) {
         guard let url = URL(string: urlString) else {
             return

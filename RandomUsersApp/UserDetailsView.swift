@@ -7,6 +7,7 @@
 
 import SwiftUI
 struct UserDetailsView: View {
+    @Environment(\.presentationMode) var presentationMode
     
     let user: User
     
@@ -22,7 +23,7 @@ struct UserDetailsView: View {
         self._modifiedEmail = State(initialValue: user.email)
         self._modifiedPassword = State(initialValue: user.login.password)
     }
-
+    
     var body: some View {
         ScrollView() {
             VStack {
@@ -84,7 +85,7 @@ struct UserDetailsView: View {
                     Button(action: {
                         //Se almacenan los valores modificados y en la key se pone el id para que sea especifico de cada usuario.
                         UserDefaults.standard.set(modifiedEmail, forKey: "\(String(describing: user.id.value))_savedEmail")
-                        UserDefaults.standard.set(modifiedPassword, forKey: "\(user.id.value ?? "")_savedPassword")
+                        UserDefaults.standard.set(modifiedPassword, forKey: "\(String(describing: user.id.value))_savedPassword")
                     }) {
                         Text("Guardar")
                             .foregroundColor(.white)
@@ -106,6 +107,15 @@ struct UserDetailsView: View {
                 self.modifiedPassword = savedPassword
             }
         }
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "arrow.left")
+                .foregroundColor(.black)
+        })
+        .background(Color.pink.edgesIgnoringSafeArea(.all)) // Fondo rosa
     }
     
     //Función para cargar la imagen del usuario desde una URL

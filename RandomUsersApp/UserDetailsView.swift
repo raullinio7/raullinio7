@@ -157,13 +157,13 @@ struct EmailValidationModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-        // Verificación del formato de email y muestra de mensaje de error si es necesario
+        // Verificación del formato de email y muestra el mensaje de error si es necesario
         if !isValidEmail(email: text) {
             Text("Formato de email inválido")
                 .foregroundColor(.white)
                 .font(.caption)
                 .padding(.horizontal)
-                .fixedSize(horizontal: false, vertical: true) // Permite el desbordamiento del texto si es necesario
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }

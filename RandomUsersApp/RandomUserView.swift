@@ -48,12 +48,12 @@ struct RandomUserView: View {
             }
             // Configuración de elementos de la barra de navegación
             .navigationBarItems(trailing: Button(action: {
-                self.showModal = true // Configura showModal en verdadero al hacer clic en el botón deinformación.
+                self.showModal = true
             }) {
                 Image(systemName: "info.circle")
                     .foregroundColor(.black)
             })
-            // Configuración de la hoja modal que se muestra cuando showModal es verdadero
+            // Configuración de la modal que se muestra cuando showModal es verdadero
             .sheet(isPresented: $showModal) {
                 ModalView(title: "Ayuda", description: "1. Para actualizar la lista de usuarios realice \"pull to refresh\".\n\n\n2. Para entrar en el detalle de la información de un usuario pulse en su tarjeta correspondiente.\n\n\n3. Dentro del detalle puede cambiar el correo y la contraseña de cualquier usuario, quedando guardada dicha modificación.")
             }

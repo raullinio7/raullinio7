@@ -55,7 +55,7 @@ struct RandomUserView: View {
             })
             // Configuración de la modal que se muestra cuando showModal es verdadero
             .sheet(isPresented: $showModal) {
-                ModalView(title: "Ayuda", description: "1. Para actualizar la lista de usuarios realice \"pull to refresh\".\n\n\n2. Para entrar en el detalle de la información de un usuario pulse en su tarjeta correspondiente.\n\n\n3. Dentro del detalle puede cambiar el correo y la contraseña de cualquier usuario, quedando guardada dicha modificación.")
+                ModalView(title: "Ayuda", description: "1. Para actualizar la lista de usuarios realice \"pull to refresh\".\n\n\n2. Para entrar en el detalle de la información de un usuario pulse en su tarjeta correspondiente.\n\n\n3. Dentro del detalle puede cambiar el correo y la contraseña de cualquier usuario, quedando guardada dicha modificación siempre y cuando el formato de email sea válido.")
             }
         }
     }

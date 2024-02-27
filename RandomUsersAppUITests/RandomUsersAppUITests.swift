@@ -30,7 +30,6 @@ final class RandomUsersAppUITests: XCTestCase {
         app.launch()
         
         XCTAssertTrue(app.staticTexts["Usuarios"].exists)
-  
     }
     
     func testLaunchPerformance() throws {

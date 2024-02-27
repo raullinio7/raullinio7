@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120076022B8E46E100F930E9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120076012B8E46E100F930E9 /* CardView.swift */; };
+		120076042B8E472300F930E9 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120076032B8E472300F930E9 /* ModalView.swift */; };
 		124C2D6B2B7FD14900F36C8C /* RandomUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */; };
 		124C2D6D2B7FD17300F36C8C /* RandomUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */; };
 		124C2D6F2B7FD1A000F36C8C /* RandomUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120076012B8E46E100F930E9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		120076032B8E472300F930E9 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserModel.swift; sourceTree = "<group>"; };
 		124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserPresenter.swift; sourceTree = "<group>"; };
 		124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserView.swift; sourceTree = "<group>"; };
@@ -79,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		120076052B8E477900F930E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				120076032B8E472300F930E9 /* ModalView.swift */,
+				120076012B8E46E100F930E9 /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		12B687D32B7FCBB20033D200 = {
 			isa = PBXGroup;
 			children = (
@@ -102,12 +115,13 @@
 		12B687DE2B7FCBB20033D200 /* RandomUsersApp */ = {
 			isa = PBXGroup;
 			children = (
-				124C2D702B7FD4CE00F36C8C /* Info.plist */,
+				120076052B8E477900F930E9 /* Views */,
 				12B687DF2B7FCBB20033D200 /* RandomUsersAppApp.swift */,
 				124C2D6A2B7FD14900F36C8C /* RandomUserModel.swift */,
 				124C2D6E2B7FD1A000F36C8C /* RandomUserView.swift */,
 				124C2D6C2B7FD17300F36C8C /* RandomUserPresenter.swift */,
 				1281F8E32B8A09B500DD3B11 /* UserDetailsView.swift */,
+				124C2D702B7FD4CE00F36C8C /* Info.plist */,
 				12B687E32B7FCBB30033D200 /* Assets.xcassets */,
 				12B687E52B7FCBB30033D200 /* RandomUsersApp.entitlements */,
 				12B687E62B7FCBB30033D200 /* Preview Content */,
@@ -274,6 +288,8 @@
 				124C2D6D2B7FD17300F36C8C /* RandomUserPresenter.swift in Sources */,
 				124C2D6F2B7FD1A000F36C8C /* RandomUserView.swift in Sources */,
 				124C2D6B2B7FD14900F36C8C /* RandomUserModel.swift in Sources */,
+				120076042B8E472300F930E9 /* ModalView.swift in Sources */,
+				120076022B8E46E100F930E9 /* CardView.swift in Sources */,
 				12B687E02B7FCBB20033D200 /* RandomUsersAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -69,7 +69,7 @@ struct UserDetailsView: View {
                             TextField("Contraseña", text: $modifiedPassword)
                         }
                         Button(action: {
-                            //.toggle() lo que hace es cambiar el valor de var isPasswordHidden: Bool
+                            //toggle() para cambiar el valor isPasswordHidden
                             isPasswordHidden.toggle()
                         }) {
                             Image(systemName: isPasswordHidden ? "eye.slash" : "eye")
@@ -80,10 +80,9 @@ struct UserDetailsView: View {
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                     .padding(.horizontal)
-                    
                     // Botón para guardar los cambios en UserDefaults
                     Button(action: {
-                        //Se almacenan los valores modificados y en la key se pone el id para que sea especifico de cada usuario.
+                        //Se almacenan los valores modificados y en la key se pone el id para que sea especifico de cada usuario
                         UserDefaults.standard.set(modifiedEmail, forKey: "\(String(describing: user.id.value))_savedEmail")
                         UserDefaults.standard.set(modifiedPassword, forKey: "\(String(describing: user.id.value))_savedPassword")
                     }) {
@@ -107,6 +106,7 @@ struct UserDetailsView: View {
                 self.modifiedPassword = savedPassword
             }
         }
+        // Se configura la barra de navegación para que solo aparezca una flecha para volver a la pantalla principal.
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {

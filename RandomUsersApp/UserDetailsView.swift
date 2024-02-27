@@ -16,6 +16,7 @@ struct UserDetailsView: View {
     @State private var modifiedEmail: String // Variable de estado para almacenar el email modificado
     @State private var modifiedPassword: String // Variable de estado para almacenar la contraseña modificada
     @State private var image: UIImage? = nil // Estado para almacenar la imagen del usuario
+    @State private var showBanner: Bool = false // Estado para controlar la visibilidad del banner
     
     init(user: User) {
         self.user = user
@@ -92,15 +93,23 @@ struct UserDetailsView: View {
                             UserDefaults.standard.set(modifiedEmail, forKey: "\(String(describing: user.id.value))_savedEmail")
                             UserDefaults.standard.set(modifiedPassword, forKey: "\(String(describing: user.id.value))_savedPassword")
                         }
-                        
+                        showBanner = true
                     }) {
                         Text("Guardar")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .padding()
-                            .background(isValidEmail(email: modifiedEmail) ? Color.green : Color.gray)
+                            .background(isValidEmail(email: modifiedEmail) ? Color.black : Color.gray)
                             .cornerRadius(10)
                             .shadow(radius: 3)
+                    }
+                    .alert(isPresented: $showBanner) {
+                        // Mostrar el banner dependiendo de si el email es válido o no
+                        if isValidEmail(email: modifiedEmail) {
+                            return Alert(title: Text("Cambios guardados"), message: nil)
+                        } else {
+                            return Alert(title: Text("No se han guardado los cambios.\nFormato de email inválido"), message: nil)
+                        }
                     }
                     Spacer()
                 }
@@ -156,7 +165,6 @@ struct EmailValidationModifier: ViewModifier {
                 .padding(.horizontal)
                 .fixedSize(horizontal: false, vertical: true) // Permite el desbordamiento del texto si es necesario
         }
-        
     }
 }
 // Función para verificar el formato de email

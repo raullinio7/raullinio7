@@ -49,6 +49,7 @@ struct UserDetailsView: View {
                             }
                     }
                     Text("\(user.name.first) \(user.name.last)")
+                        .fontWeight(.bold)
                         .font(.title)
                         .foregroundColor(.black)
                     Text(user.location.city + ", " + user.location.country)
@@ -60,6 +61,9 @@ struct UserDetailsView: View {
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
                         .padding(.horizontal)
+                        .autocapitalization(.none) // Desactiva la autocapitalización del texto
+                        .keyboardType(.emailAddress) // Configura el teclado para introducir direcciones de email
+                        .modifier(EmailValidationModifier(text: $modifiedEmail))
                     
                     // Campo editable para la contraseña del usuario
                     HStack {
@@ -82,14 +86,19 @@ struct UserDetailsView: View {
                     .padding(.horizontal)
                     // Botón para guardar los cambios en UserDefaults
                     Button(action: {
-                        //Se almacenan los valores modificados y en la key se pone el id para que sea especifico de cada usuario
-                        UserDefaults.standard.set(modifiedEmail, forKey: "\(String(describing: user.id.value))_savedEmail")
-                        UserDefaults.standard.set(modifiedPassword, forKey: "\(String(describing: user.id.value))_savedPassword")
+                        // Comprobación para que solo se pueda guardar si el formato del correo es válido.
+                        if isValidEmail(email: modifiedEmail) {
+                            //Se almacenan los valores modificados y en la key se pone el id para que sea especifico de cada usuario
+                            UserDefaults.standard.set(modifiedEmail, forKey: "\(String(describing: user.id.value))_savedEmail")
+                            UserDefaults.standard.set(modifiedPassword, forKey: "\(String(describing: user.id.value))_savedPassword")
+                        }
+                        
                     }) {
                         Text("Guardar")
+                            .fontWeight(.bold)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.black)
+                            .background(isValidEmail(email: modifiedEmail) ? Color.green : Color.gray)
                             .cornerRadius(10)
                             .shadow(radius: 3)
                     }
@@ -132,4 +141,27 @@ struct UserDetailsView: View {
             }
         }.resume()
     }
+}
+// Modificador de vista para validar el formato de email
+struct EmailValidationModifier: ViewModifier {
+    @Binding var text: String
+    
+    func body(content: Content) -> some View {
+        content
+        // Verificación del formato de email y muestra de mensaje de error si es necesario
+        if !isValidEmail(email: text) {
+            Text("Formato de email inválido")
+                .foregroundColor(.white)
+                .font(.caption)
+                .padding(.horizontal)
+                .fixedSize(horizontal: false, vertical: true) // Permite el desbordamiento del texto si es necesario
+        }
+        
+    }
+}
+// Función para verificar el formato de email
+ func isValidEmail(email: String) -> Bool {
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    return emailPred.evaluate(with: email)
 }

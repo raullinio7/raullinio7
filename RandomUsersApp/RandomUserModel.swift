@@ -2,7 +2,7 @@
 //  RandomUserModel.swift
 //  RandomUsersApp
 //
-//  Created by Raul Linio Alonso on 16/2/24.
+//  Created by Raul Linio Alonso
 //
 import Foundation
 

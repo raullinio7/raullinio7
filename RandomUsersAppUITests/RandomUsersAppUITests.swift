@@ -2,7 +2,7 @@
 //  RandomUsersAppUITests.swift
 //  RandomUsersAppUITests
 //
-//  Created by Raul Linio Alonso on 16/2/24.
+//  Created by Raul Linio Alonso
 //
 
 import XCTest
